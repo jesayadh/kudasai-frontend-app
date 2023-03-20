@@ -1,0 +1,65 @@
+body, html {
+  overflow: hidden;
+}
+
+.split {
+  display: flex;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#left, #right {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.gutter {
+  background-color: #ddd !important;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.split,
+.gutter.gutter-horizontal {
+  /*height: 300px;*/
+}
+
+.split,
+.gutter.gutter-vertical {
+  height: 100%;
+}
+
+.gutter.gutter-horizontal::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.gutter-horizontal {
+  cursor: col-resize;
+  position: relative;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.gutter-vertical {
+  cursor: row-resize;
+  position: relative;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  z-index: 1 !important;
+}
+
+.gutter.gutter-vertical::after {
+  content: "";
+  display: block;
+  height: 8px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  z-index: 10;
+}
