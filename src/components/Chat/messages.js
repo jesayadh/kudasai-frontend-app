@@ -3,29 +3,27 @@ import React, { useContext, useEffect, useState } from 'react'
 // import { ChatContext } from "../../context/ChatContext";
 // import { db } from "../../firebase";
 import Message from './message'
+import axios from '@/lib/axios'
 
-const Messages = () => {
-    // const [messages, setMessages] = useState([])
+const Messages = ({ id }) => {
+    const [messages, setMessages] = useState([])
     // const { data } = useContext(ChatContext);
 
-    // useEffect(() => {
-    //   const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-    //     doc.exists() && setMessages(doc.data().messages);
-    //   });
-
-    //   return () => {
-    //     unSub();
-    //   };
-    // }, [data.chatId]);
-    const messages = [
-        {
-            senderId: '1',
-            text: 'asd',
-            img: 'asd',
-        },
-    ]
-
-    console.log(messages)
+    useEffect(() => {
+        const unSub = setInterval(() => {
+            axios
+                .get('/api/client/interaction/' + id)
+                .then(data => {
+                    setMessages(data.data.data.conversations)
+                    console.log(data)
+                    console.log('success')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }, 3000)
+        return () => clearInterval(unSub)
+    }, [id])
 
     return (
         <div className="messages">

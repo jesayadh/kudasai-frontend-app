@@ -5,11 +5,16 @@ import { useState } from 'react'
 function ClientForm({setKey}) {
     const [data, setData] = useState({})
 
-    const send = e => {
-        console.log(data)
+    const csrf = axios.get('/sanctum/csrf-cookie')
+
+    const start = e => {
+        csrf
         axios
-            .post('/api/send', data)
-            .then(() => console.log('success'))
+            .post('/api/start', data)
+            .then((data) => {
+                setKey(data.data.data.interaction_id);
+                console.log('success')
+            })
             .catch(error => {
                 console.log(error)
             })
@@ -38,7 +43,7 @@ function ClientForm({setKey}) {
                     </div>
                 </div>
                 <div className="conversation middle">
-                    <form onSubmit={send}>
+                    <form onSubmit={start}>
                         <div className="my-4">
                             <ClientFormInput
                                 onChange={handleInput}

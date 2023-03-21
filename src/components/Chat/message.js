@@ -19,7 +19,7 @@ const Message = ({ message }) => {
   return (
     <>
       <div ref={ref}>
-        {message.senderId === currentUser.uid ? (
+        {message.type === "inbound" ? (
           <>
             <BubbleMessageSent text={message.text} />
             {message.img && <img src={message.img} alt="" />}
