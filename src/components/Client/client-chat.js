@@ -1,5 +1,5 @@
 import InputClient from '@/components/Chat/input-client'
-import Messages from '@/components/Chat/messages'
+import ClientMessages from './client-messages'
 
 function ClientChat({ id }) {
     return (
@@ -25,7 +25,7 @@ function ClientChat({ id }) {
                 </div>
                 <div className="conversation middle pb-2">
                     <div className="conversation-container">
-                        <Messages id={id} />
+                        <ClientMessages id={id} />
                     </div>
                 </div>
                 <InputClient id={id}></InputClient>
